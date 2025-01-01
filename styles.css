@@ -1,75 +1,45 @@
-/* General body styling */
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     text-align: center;
-    background-color: #e6f7ff; /* Soft pastel blue */
-    padding: 50px;
 }
 
-/* Header styling */
+.content {
+    max-width: 600px;
+    margin: 20px;
+}
+
 h1 {
-    color: #ff6347;
     font-size: 3em;
-    margin-bottom: 20px;
-    font-family: 'Dancing Script', cursive;
+    color: #5a5a5a;
 }
 
-/* Poem line styling */
-.poem-line {
+.line {
     font-size: 1.5em;
     color: #333;
-    margin-bottom: 10px;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    opacity: 0; /* Initially hidden */
+    transform: translateY(50px);
+    transition: opacity 0.6s, transform 0.6s ease-out;
 }
 
-/* Make the poem line visible on scroll */
-.poem-line.visible {
-    opacity: 1;
-    transform: translateY(0);
+.scroll-prompt {
+    margin-top: 30px;
+    font-size: 1.2em;
+    color: #007bff;
+    font-weight: bold;
+    display: none;
 }
 
-/* Add color to the dirty-minded part */
-i {
-    color: #ff6347;
-}
-
-/* Custom Colors for the Highlighted Phrases */
-.highlight-20th {
-    color: #ff6347; /* Red for '20th' */
-}
-
-.highlight-teen {
-    color: #32cd32; /* Green for 'teen to twenty' */
-}
-
-.highlight-sibling {
-    color: #8a2be2; /* Purple for 'Happy Birthday, Elena—our sibling, our star,' */
-}
-
-.highlight-munnu {
-    color: #ff1493; /* Pink for 'Munnu Bhai' */
-}
-
-.highlight-innocence {
-    color: #ff69b4; /* Hot Pink for 'innocence' */
-}
-
-.highlight-pure {
-    color: #00bfff; /* Sky Blue for 'pure hearts' */
-}
-
-.highlight-adventurer {
-    color: #ff8c00 !important; /* Orange for 'adventurer’s spirit' */
-}
-
-/* Color for Kazhiveri nickname */
-.highlight-kazhiveri {
-    color: #ff4500; /* OrangeRed for 'Kazhiveri' */
-}
-
-/* Styling for the highlighted dirty-minded part */
-.poem-line i {
-    color: #ff6347; /* Dirty-minded part color */
+#scrollPrompt.show {
+    display: block;
 }
