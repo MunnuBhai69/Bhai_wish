@@ -1,0 +1,75 @@
+/* General body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background-color: #e6f7ff; /* Soft pastel blue */
+    padding: 50px;
+}
+
+/* Header styling */
+h1 {
+    color: #ff6347;
+    font-size: 3em;
+    margin-bottom: 20px;
+    font-family: 'Dancing Script', cursive;
+}
+
+/* Poem line styling */
+.poem-line {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Make the poem line visible on scroll */
+.poem-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Add color to the dirty-minded part */
+i {
+    color: #ff6347;
+}
+
+/* Custom Colors for the Highlighted Phrases */
+.highlight-20th {
+    color: #ff6347; /* Red for '20th' */
+}
+
+.highlight-teen {
+    color: #32cd32; /* Green for 'teen to twenty' */
+}
+
+.highlight-sibling {
+    color: #8a2be2; /* Purple for 'Happy Birthday, Elena—our sibling, our star,' */
+}
+
+.highlight-munnu {
+    color: #ff1493; /* Pink for 'Munnu Bhai' */
+}
+
+.highlight-innocence {
+    color: #ff69b4; /* Hot Pink for 'innocence' */
+}
+
+.highlight-pure {
+    color: #00bfff; /* Sky Blue for 'pure hearts' */
+}
+
+.highlight-adventurer {
+    color: #ff8c00 !important; /* Orange for 'adventurer’s spirit' */
+}
+
+/* Color for Kazhiveri nickname */
+.highlight-kazhiveri {
+    color: #ff4500; /* OrangeRed for 'Kazhiveri' */
+}
+
+/* Styling for the highlighted dirty-minded part */
+.poem-line i {
+    color: #ff6347; /* Dirty-minded part color */
+}
