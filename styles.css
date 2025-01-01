@@ -1,45 +1,88 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f0f8ff;
+    font-family: 'Poppins', sans-serif;
+    background-color: #A7C7E7; /* Soft background color */
+    color: #333;
+    text-align: center;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
-}
-
-.content {
-    max-width: 600px;
-    margin: 20px;
+    padding-bottom: 100px; /* Give space for the scroll button */
 }
 
 h1 {
-    font-size: 3em;
-    color: #5a5a5a;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5em;
+    color: #ff6347;
+    margin-top: 50px;
 }
 
-.line {
+.poem-line {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-in-out;
+    margin: 20px 0;
+}
+
+.poem-line.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.highlight-20th {
+    color: #ff6347;
+}
+
+.highlight-teen {
+    color: #ffeb3b;
+}
+
+.highlight-adventurer {
+    color: #4caf50;
+}
+
+.highlight-innocence {
+    color: #00bcd4;
+}
+
+.highlight-pure {
+    color: #9c27b0;
+}
+
+.highlight-kazhiveri {
+    color: #ff9800;
+}
+
+.highlight-sibling {
+    color: #2196f3;
+}
+
+.highlight-munnu {
+    color: #673ab7;
+}
+
+/* Scroll for more styling */
+.scroll-indicator {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     font-size: 1.5em;
-    color: #333;
-    opacity: 0; /* Initially hidden */
-    transform: translateY(50px);
-    transition: opacity 0.6s, transform 0.6s ease-out;
+    color: #2196f3;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    visibility: hidden; /* Initially hidden */
 }
 
-.scroll-prompt {
-    margin-top: 30px;
-    font-size: 1.2em;
-    color: #007bff;
-    font-weight: bold;
-    display: none;
+.scroll-indicator.visible {
+    opacity: 1;
+    visibility: visible; /* Make it visible once triggered */
 }
 
-#scrollPrompt.show {
-    display: block;
+.scroll-indicator:hover {
+    color: #ff6347;
+}
+
+/* Add some padding to make sure poem fits well */
+body {
+    padding-bottom: 100px; /* Ensure space for the button */
 }
