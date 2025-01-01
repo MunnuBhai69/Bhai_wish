@@ -2,26 +2,37 @@
 window.onload = function() {
     const lines = document.querySelectorAll('.line');
     const scrollPrompt = document.getElementById('scrollPrompt');
-    let lineIndex = 0;
 
-    // Show lines when scrolling
+    // Show the "Scroll for more..." prompt when user starts scrolling
     window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-
-        // Display the "Scroll for more..." prompt when scrolling begins
-        if (scrollPosition > 100) {
+        if (window.scrollY > 100) {
             scrollPrompt.classList.add('show');
         }
+    });
 
-        // Show the lines one by one as the user scrolls
-        if (lineIndex < lines.length) {
-            const line = lines[lineIndex];
-            if (scrollPosition + windowHeight > line.offsetTop + 100) {
+    // IntersectionObserver to reveal lines as they come into view
+    const observerOptions = {
+        root: null,  // null means the viewport
+        rootMargin: '0px',
+        threshold: 0.5  // 50% of the element must be in the viewport
+    };
+
+    // Callback function to reveal lines when they come into view
+    const revealLine = (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const line = entry.target;
                 line.style.opacity = 1;
                 line.style.transform = 'translateY(0)';
-                lineIndex++;
+                observer.unobserve(line);  // Stop observing after revealing
             }
-        }
+        });
+    };
+
+    const observer = new IntersectionObserver(revealLine, observerOptions);
+
+    // Observe each line to trigger animations
+    lines.forEach(line => {
+        observer.observe(line);
     });
 };
