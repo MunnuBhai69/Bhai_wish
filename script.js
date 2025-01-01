@@ -1,38 +1,42 @@
-// Wait for the page to load completely
-window.onload = function() {
-    const lines = document.querySelectorAll('.line');
-    const scrollPrompt = document.getElementById('scrollPrompt');
+// Wait for the page to load and reveal the first line immediately
+document.addEventListener('DOMContentLoaded', function() {
+    const firstLine = document.querySelector('.scroll-trigger'); // The first poem line with the scroll-trigger class
+    firstLine.classList.add('visible'); // Immediately reveal the first line
 
-    // Show the "Scroll for more..." prompt when user starts scrolling
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            scrollPrompt.classList.add('show');
+    // Trigger the scroll indicator once the page has loaded
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    scrollIndicator.classList.add('visible'); // Make the scroll button appear
+});
+
+// Scroll to the next section when user clicks on the "Scroll for more" text
+document.querySelector('.scroll-indicator').addEventListener('click', function() {
+    window.scrollBy({
+        top: window.innerHeight,
+        left: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Scroll trigger function to reveal poem lines as the user scrolls
+window.addEventListener('scroll', function() {
+    const scrollLines = document.querySelectorAll('.scroll-trigger'); // All poem lines with the scroll-trigger class
+    const windowHeight = window.innerHeight; // Get the height of the window (viewport)
+    const scrollIndicator = document.querySelector('.scroll-indicator'); // The scroll button
+
+    // Loop through each poem line and reveal it as it comes into view
+    scrollLines.forEach(function(line) {
+        const lineTop = line.getBoundingClientRect().top; // Get the position of the line relative to the viewport
+
+        // If the line is within the viewport, make it visible
+        if (lineTop < windowHeight - 100) { // Trigger when 100px away from the bottom of the viewport
+            line.classList.add('visible'); // Add the visible class to reveal the line
         }
     });
 
-    // IntersectionObserver to reveal lines as they come into view
-    const observerOptions = {
-        root: null,  // null means the viewport
-        rootMargin: '0px',
-        threshold: 0.5  // 50% of the element must be in the viewport
-    };
-
-    // Callback function to reveal lines when they come into view
-    const revealLine = (entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const line = entry.target;
-                line.style.opacity = 1;
-                line.style.transform = 'translateY(0)';
-                observer.unobserve(line);  // Stop observing after revealing
-            }
-        });
-    };
-
-    const observer = new IntersectionObserver(revealLine, observerOptions);
-
-    // Observe each line to trigger animations
-    lines.forEach(line => {
-        observer.observe(line);
-    });
-};
+    // Show the scroll button when user scrolls 100px down
+    if (window.scrollY > 100) {
+        scrollIndicator.classList.add('visible');
+    } else {
+        scrollIndicator.classList.remove('visible');
+    }
+});
